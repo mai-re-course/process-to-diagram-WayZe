@@ -1,0 +1,30 @@
+@startuml
+
+interface User
+
+package "Front End" {
+    component Browser
+    component Cache
+    component HSTS
+    interface HTTP
+}
+ 
+package "Back End" {
+    component Server
+} 
+
+package "DNS server" {
+    component DnsServer
+} 
+
+Browser --> User
+Browser --> Cache
+Browser --> HSTS
+Cache --> HTTP
+Browser --> HTTP
+HSTS --> HTTP
+HTTP <-- Server
+Browser --> DnsServer
+DnsServer --> HTTP
+
+@enduml
